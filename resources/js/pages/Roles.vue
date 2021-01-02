@@ -9,7 +9,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>My CRUD</v-toolbar-title>
+        <v-toolbar-title>Roles</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -48,6 +48,20 @@
                       v-model="editedItem.name"
                       label="Role name"
                     ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-select
+                      v-model="editedItem.permissions" :items="allPermissions"
+                      label="Permissions"
+                      item-text="name" 
+                      return-object
+                      multiple
+                      chips
+                    ></v-select>
                   </v-col>
                 </v-row>
               </v-container>
@@ -106,19 +120,20 @@
       dialog: false,
       dialogDelete: false,
       headers: [
-        {
-          text: 'Name',
-          value: 'name',
-        },
+        { text: 'Name', value: 'name' },
+        { text: 'Permissions', value: 'permissions' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       tableData: [],
       editedIndex: -1,
+      allPermissions: [],
       editedItem: {
         name: '',
+        permissions: [],
       },
       defaultItem: {
         name: '',
+        permissions: [],
       },
     }),
 
@@ -145,6 +160,9 @@
       initialize () {
         axios.get('/api/roles').then(resp=>
         resp.data.data ? this.tableData = resp.data.data : this.tableData = []
+        )
+        axios.get('/api/permissions').then(resp=>
+        resp.data.data ? this.allPermissions = resp.data.data : this.allPermissions = []
         )
       },
 

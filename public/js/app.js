@@ -2461,6 +2461,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2470,17 +2484,23 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Name',
         value: 'name'
       }, {
+        text: 'Permissions',
+        value: 'permissions'
+      }, {
         text: 'Actions',
         value: 'actions',
         sortable: false
       }],
       tableData: [],
       editedIndex: -1,
+      allPermissions: [],
       editedItem: {
-        name: ''
+        name: '',
+        permissions: []
       },
       defaultItem: {
-        name: ''
+        name: '',
+        permissions: []
       }
     };
   },
@@ -2506,6 +2526,9 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/roles').then(function (resp) {
         return resp.data.data ? _this.tableData = resp.data.data : _this.tableData = [];
+      });
+      axios.get('/api/permissions').then(function (resp) {
+        return resp.data.data ? _this.allPermissions = resp.data.data : _this.allPermissions = [];
       });
     },
     editItem: function editItem(item) {
@@ -2788,14 +2811,14 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         email: '',
         role: [],
-        permisions: [],
+        permissions: [],
         created_at: ''
       },
       defaultItem: {
         name: '',
         email: '',
         role: [],
-        permisions: [],
+        permissions: [],
         created_at: ''
       }
     };
@@ -39926,7 +39949,7 @@ var render = function() {
               "v-toolbar",
               { attrs: { flat: "" } },
               [
-                _c("v-toolbar-title", [_vm._v("My CRUD")]),
+                _c("v-toolbar-title", [_vm._v("Roles")]),
                 _vm._v(" "),
                 _c("v-divider", {
                   staticClass: "mx-4",
@@ -40012,6 +40035,37 @@ var render = function() {
                                               )
                                             },
                                             expression: "editedItem.name"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      {
+                                        attrs: { cols: "12", sm: "6", md: "4" }
+                                      },
+                                      [
+                                        _c("v-select", {
+                                          attrs: {
+                                            items: _vm.allPermissions,
+                                            label: "Permissions",
+                                            "item-text": "name",
+                                            "return-object": "",
+                                            multiple: "",
+                                            chips: ""
+                                          },
+                                          model: {
+                                            value: _vm.editedItem.permissions,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.editedItem,
+                                                "permissions",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "editedItem.permissions"
                                           }
                                         })
                                       ],
