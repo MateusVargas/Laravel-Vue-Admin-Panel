@@ -6,7 +6,7 @@ export default class Auth{
 		return this.user.roles.map(role=>role.name)
 	}
 	permissions(){
-		return this.user.permissions ? this.user.permissions.map(p=>p.name) : []
+		return this.user.permissions.map(p=>p.name)
 	}
 	isAdmin(){
 		return this.roles().includes('Admin')

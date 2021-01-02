@@ -21,14 +21,7 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import Auth from './auth'
 Vue.prototype.$auth = new Auth(window.user)
 
-// export default new Vuetify({
-// 	icons: {
-// 	    iconfont: 'md'
-// 	},
-// 	theme: {
-// 	    dark: true,
-// 	}
-// })
+console.log('ww',window.user)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

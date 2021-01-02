@@ -16,8 +16,7 @@ class UserResource extends JsonResource
     {
         $defaultData = parent::toArray($request);
         $additionalData = [
-            //'role' => $this->roles->first(),
-            'role' => $this->roles,
+            'role' => $this->roles->first(),
             'permissions' => $this->permissions
         ];
 

@@ -2010,10 +2010,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      drawer: null
+      drawer: null,
+      items: [{
+        title: 'Click Me'
+      }, {
+        title: 'Click Me'
+      }, {
+        title: 'Click Me'
+      }, {
+        title: 'Click Me 2'
+      }]
     };
   },
   props: ['user'],
@@ -2713,7 +2771,7 @@ __webpack_require__.r(__webpack_exports__);
         value: 'email'
       }, {
         text: 'Role',
-        value: 'role'
+        value: 'role.name'
       }, {
         text: 'Created',
         value: 'created_at'
@@ -7293,7 +7351,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.cb {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n", ""]);
+exports.push([module.i, "\n.v-application a{\n  text-decoration:none;\n}\n.v-list-group__items{\n  width: 100%;\n}\n.v-list-group {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -39235,7 +39293,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-list-group",
-                    { staticClass: "cb", attrs: { "no-action": "" } },
+                    { attrs: { "no-action": "" } },
                     [
                       _c(
                         "v-list-item",
@@ -39358,7 +39416,128 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("v-toolbar-title", [_vm._v("Laravel Vue Admin")])
+              _c("v-toolbar-title", [_vm._v("Laravel Vue Admin\n      ")]),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-menu",
+                {
+                  attrs: {
+                    bottom: "",
+                    origin: "center center",
+                    transition: "scale-transition"
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "v-btn",
+                            _vm._g(
+                              _vm._b(
+                                { attrs: { icon: "" } },
+                                "v-btn",
+                                attrs,
+                                false
+                              ),
+                              on
+                            ),
+                            [
+                              _c(
+                                "v-badge",
+                                { attrs: { color: "red", content: "3" } },
+                                [_c("v-icon", [_vm._v("notifications")])],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    _vm._l(_vm.items, function(item, i) {
+                      return _c(
+                        "v-list-item",
+                        { key: i },
+                        [
+                          _c("v-list-item-title", [
+                            _vm._v(_vm._s(item.title) + "\n               ")
+                          ])
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-menu",
+                {
+                  attrs: {
+                    bottom: "",
+                    origin: "center center",
+                    transition: "scale-transition"
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "v-btn",
+                            _vm._g(
+                              _vm._b(
+                                { attrs: { icon: "" } },
+                                "v-btn",
+                                attrs,
+                                false
+                              ),
+                              on
+                            ),
+                            [_c("v-icon", [_vm._v("account_circle")])],
+                            1
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    _vm._l(_vm.items, function(item, i) {
+                      return _c(
+                        "v-list-item",
+                        { key: i },
+                        [
+                          _c("v-list-item-title", [
+                            _vm._v(_vm._s(item.title) + "\n              ")
+                          ])
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           ),
@@ -100293,15 +100472,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$auth = new _auth__WEBPACK_IMPORTED_MODULE_5__["default"](window.user); // export default new Vuetify({
-// 	icons: {
-// 	    iconfont: 'md'
-// 	},
-// 	theme: {
-// 	    dark: true,
-// 	}
-// })
-
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$auth = new _auth__WEBPACK_IMPORTED_MODULE_5__["default"](window.user);
+console.log('ww', window.user);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -100393,9 +100565,9 @@ var Auth = /*#__PURE__*/function () {
   }, {
     key: "permissions",
     value: function permissions() {
-      return this.user.permissions ? this.user.permissions.map(function (p) {
+      return this.user.permissions.map(function (p) {
         return p.name;
-      }) : [];
+      });
     }
   }, {
     key: "isAdmin",
@@ -100759,15 +100931,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************!*\
   !*** ./resources/js/pages/Roles.vue ***!
   \**************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Roles_vue_vue_type_template_id_92109ef8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Roles.vue?vue&type=template&id=92109ef8& */ "./resources/js/pages/Roles.vue?vue&type=template&id=92109ef8&");
 /* harmony import */ var _Roles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Roles.vue?vue&type=script&lang=js& */ "./resources/js/pages/Roles.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Roles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Roles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -100797,7 +100968,7 @@ component.options.__file = "resources/js/pages/Roles.vue"
 /*!***************************************************************!*\
   !*** ./resources/js/pages/Roles.vue?vue&type=script&lang=js& ***!
   \***************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

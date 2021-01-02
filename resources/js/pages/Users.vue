@@ -172,7 +172,7 @@
       headers: [
         { text: 'Username', value: 'name' },
         { text: 'Email', value: 'email' },
-        { text: 'Role', value: 'role' },
+        { text: 'Role', value: 'role.name' },
         { text: 'Created', value: 'created_at' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
