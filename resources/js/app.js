@@ -8,7 +8,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 
@@ -63,12 +62,12 @@ const router = new VueRouter({
 new Vue({
 	el: '#app',
   	vuetify: new Vuetify({
-	icons: {
-	    iconfont: 'md'
-	},
-	theme: {
-	    dark: true,
-	}
-}),
+		icons: {
+		    iconfont: 'md'
+		},
+		theme: {
+		    dark: true,
+		}
+	}),
   	router
 });

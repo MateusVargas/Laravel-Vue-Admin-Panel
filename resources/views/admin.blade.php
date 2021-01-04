@@ -1,7 +1,6 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 @section('content')
 		<admin :user="{{auth()->user()}}"></admin>
-        <!-- <admin></admin> -->
 @endsection
 @section('scripts')
         <script>
@@ -11,8 +10,8 @@
                 'permissions' => auth()->user()->permissions
             ])
         </script>
-@endsection    
-<!-- <!doctype html>
+@endsection   -->  
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -35,11 +34,11 @@
         <admin :user="{{auth()->user()}}"></admin>
     </div>
     <script>
-        	window.user = @json([
-        		'user' => auth()->user(),
-        		'roles' => auth()->user()->roles,
-        		'permissions' => auth()->user()->permissions
-        	])
-        </script>
+        window.user = @json([
+        	'user' => auth()->user(),
+        	'roles' => auth()->user()->roles,
+        	'permissions' => auth()->user()->permissions
+        ])
+    </script>
 </body>
-</html>  -->
+</html> 

@@ -9,7 +9,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>My CRUD</v-toolbar-title>
+        <v-toolbar-title>Users</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -28,7 +28,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              New Role
+              New User
             </v-btn>
           </template>
           <v-card>
@@ -67,7 +67,10 @@
                   >
                     <v-text-field
                       v-model="editedItem.password"
+                      :append-icon="showPassword ? 'eye' : 'eye-off'"
+                      :rules="[rules.required,rules.min]"
                       label="Password"
+                      :type="showPassword ? 'text' : 'password'"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -78,6 +81,9 @@
                     <v-text-field
                       v-model="editedItem.confirm_password"
                       label="Confirm Password"
+                      :append-icon="showPasswordConfirm ? 'md-eye' : 'eye-off'"
+                      :rules="[rules.required,rules.min]"
+                      :type="showPasswordConfirm ? 'text' : 'password'"
                     ></v-text-field>
                   </v-col>
 
@@ -193,6 +199,13 @@
         role: [],
         permissions: [],
         created_at: '',
+      },
+      showPassword: false,
+      showPasswordConfirm: false,
+      password: 'Password',
+      rules: {
+        required: value => !!value || 'Required.',
+        min: value => value ? value.length >= 4 || 'Min 4 characters' : ''
       },
     }),
 

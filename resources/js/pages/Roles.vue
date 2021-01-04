@@ -1,42 +1,28 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="tableData"
-    sort-by="calories"
-    class="elevation-1"
-  >
-    <template v-slot:top>
-      <v-toolbar
-        flat
-      >
-        <v-toolbar-title>Roles</v-toolbar-title>
-        <v-divider
+ <div>
+  <v-toolbar dark color="grey-lighten">
+    <v-toolbar-title>Roles</v-toolbar-title>
+    <v-divider
           class="mx-4"
           inset
           vertical
-        ></v-divider>
-        <v-spacer></v-spacer>
-        <v-dialog
-          v-model="dialog"
-          max-width="500px"
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
+    ></v-divider>
+    <v-spacer></v-spacer>
+    <v-dialog v-model="dialog" max-width="700px">
+          <v-btn
+        slot="activator"
               color="primary"
               dark
               class="mb-2"
-              v-bind="attrs"
-              v-on="on"
-            >
-              New Role
-            </v-btn>
-          </template>
-          <v-card>
+            >New Role
+  </v-btn>
+  <v-card>
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
+  
 
-            <v-card-text>
+    <v-card-text>
               <v-container>
                 <v-row>
                   <v-col
@@ -67,18 +53,19 @@
               </v-container>
             </v-card-text>
 
+
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
                 color="blue darken-1"
-                text
+               
                 @click="close"
               >
                 Cancel
               </v-btn>
               <v-btn
                 color="blue darken-1"
-                text
+               
                 @click="save"
               >
                 Save
@@ -86,24 +73,44 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-      </v-toolbar>
-    </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item)"
-      >
-        edit
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteItem(item)"
-      >
-        delete
-      </v-icon>
-    </template>
-    <template v-slot:no-data>
+  </v-toolbar>
+
+  <v-data-table
+    :headers="headers"
+    :items="tableData"
+    class="elevation-1"
+  >
+    <template v-slot:item="{ item }">
+    <tr>
+    <td>{{ item.name }}</td>
+                <td style="width: 40%" v-if="item.permissions">
+                    <v-chip
+                            small
+                            v-for="(permission,index) in item.permissions"
+                            color="primary" text-color="white"
+                            :key="index"
+                    >
+                        {{permission.name}}
+                    </v-chip>
+                </td>
+                <td class="justify-center layout px-0">
+                    <v-icon
+                            small
+                            class="mr-2"
+                            @click="editItem(item)"
+                    >
+                        edit
+                    </v-icon>
+                    <v-icon
+                            small
+                            @click="deleteItem(item)"
+                    >
+                        delete
+                    </v-icon>
+                </td>
+              </tr>
+     </template>
+     <template slot:no-data>
       <v-btn
         color="primary"
         @click="initialize"
@@ -112,6 +119,7 @@
       </v-btn>
     </template>
   </v-data-table>
+ </div>
 </template>
 
 <script>
@@ -121,8 +129,8 @@
       dialogDelete: false,
       headers: [
         { text: 'Name', value: 'name' },
-        { text: 'Permissions', value: 'permissions' },
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: 'Permissions', value: 'created_at' },
+        { text: 'Actions', value: 'name', sortable: false },
       ],
       tableData: [],
       editedIndex: -1,
@@ -208,3 +216,4 @@
     },
   }
 </script>
+

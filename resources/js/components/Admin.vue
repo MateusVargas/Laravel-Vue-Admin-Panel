@@ -160,7 +160,7 @@
               { title: 'Click Me 2' },
             ],
         }),
-        props:['user'],
+        props: ["user"],
         methods:{
             logout(){
                 console.log('Component mounted.')

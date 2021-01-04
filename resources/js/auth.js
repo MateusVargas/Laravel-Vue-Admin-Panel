@@ -11,7 +11,7 @@ export default class Auth{
 	isAdmin(){
 		return this.roles().includes('Admin')
 	}
-	can(permissionName){
-		return this.permissions().includes(permissionName)
+	can($permissionName){
+		return this.permissions().includes($permissionName)
 	}
 }
