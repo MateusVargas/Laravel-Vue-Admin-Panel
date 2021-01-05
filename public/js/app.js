@@ -2059,6 +2059,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2071,14 +2072,30 @@ __webpack_require__.r(__webpack_exports__);
         title: 'Click Me'
       }, {
         title: 'Click Me 2'
-      }]
+      }],
+      allNotifications: []
     };
   },
   props: ["user"],
   methods: {
     logout: function logout() {
       console.log('Component mounted.');
+    },
+    markAsRead: function markAsRead() {
+      axios.get('/mark-all-read/' + this.user.id).then(function (resp) {
+        return console.log('done');
+      });
     }
+  },
+  computed: {
+    unreadNotifications: function unreadNotifications() {
+      return this.allNotifications.filter(function (notification) {
+        return notification.read_at == null;
+      });
+    }
+  },
+  created: function created() {
+    this.allNotifications = window.user.user.notifications;
   }
 });
 
@@ -39487,7 +39504,10 @@ var render = function() {
                             "v-btn",
                             _vm._g(
                               _vm._b(
-                                { attrs: { icon: "" } },
+                                {
+                                  attrs: { icon: "" },
+                                  on: { click: _vm.markAsRead }
+                                },
                                 "v-btn",
                                 attrs,
                                 false
@@ -39497,8 +39517,20 @@ var render = function() {
                             [
                               _c(
                                 "v-badge",
-                                { attrs: { color: "red", content: "3" } },
-                                [_c("v-icon", [_vm._v("notifications")])],
+                                { attrs: { color: "red", overlap: "" } },
+                                [
+                                  _c(
+                                    "span",
+                                    { attrs: { slot: "badge" }, slot: "badge" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.unreadNotifications.length)
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-icon", [_vm._v("notifications")])
+                                ],
                                 1
                               )
                             ],
@@ -39513,13 +39545,16 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-list",
-                    _vm._l(_vm.items, function(item, i) {
+                    _vm._l(_vm.allNotifications, function(notification) {
                       return _c(
                         "v-list-item",
-                        { key: i },
+                        { key: notification.id },
                         [
                           _c("v-list-item-title", [
-                            _vm._v(_vm._s(item.title) + "\n               ")
+                            _vm._v(
+                              _vm._s(notification.data.createdUser.name) +
+                                " has just registered\n               "
+                            )
                           ])
                         ],
                         1
@@ -39569,18 +39604,17 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-list",
-                    _vm._l(_vm.items, function(item, i) {
-                      return _c(
+                    [
+                      _c(
                         "v-list-item",
-                        { key: i },
                         [
                           _c("v-list-item-title", [
-                            _vm._v(_vm._s(item.title) + "\n              ")
+                            _vm._v(_vm._s(_vm.user.name) + "\n              ")
                           ])
                         ],
                         1
                       )
-                    }),
+                    ],
                     1
                   )
                 ],

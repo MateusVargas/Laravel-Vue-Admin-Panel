@@ -85,11 +85,13 @@
                 icon
                 v-bind="attrs"
                 v-on="on"
+                @click="markAsRead"
               >
                 <v-badge
                   color="red"
-                  content="3"
+                  overlap
                 >
+                  <span slot="badge">{{unreadNotifications.length}}</span>
                   <v-icon>notifications</v-icon>
                 </v-badge>
               </v-btn>
@@ -97,8 +99,8 @@
 
             <v-list>
               <v-list-item
-                v-for="(item, i) in items" :key="i">
-                  <v-list-item-title>{{ item.title }}
+                v-for="notification in allNotifications" :key="notification.id">
+                  <v-list-item-title>{{ notification.data.createdUser.name }} has just registered
                    </v-list-item-title>
               </v-list-item>
             </v-list>
@@ -120,9 +122,8 @@
             </template>
 
             <v-list>
-              <v-list-item
-                v-for="(item, i) in items" :key="i">
-                  <v-list-item-title>{{ item.title }}
+              <v-list-item>
+                  <v-list-item-title>{{ user.name }}
                   </v-list-item-title>
               </v-list-item>
             </v-list>
@@ -159,12 +160,26 @@
               { title: 'Click Me' },
               { title: 'Click Me 2' },
             ],
+            allNotifications: []
         }),
         props: ["user"],
         methods:{
             logout(){
-                console.log('Component mounted.')
+              console.log('Component mounted.')
+            },
+            markAsRead(){
+              axios.get('/mark-all-read/'+this.user.id).then(resp=>console.log('done'))
             }
+        },
+        computed:{
+          unreadNotifications(){
+            return this.allNotifications.filter(notification => {
+              return notification.read_at == null
+            })
+          }
+        },
+        created(){
+          this.allNotifications = window.user.user.notifications
         }
     }
 </script>

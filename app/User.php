@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Notifications\UserRegistered;
+use Illuminate\Support\Facades\Notification;
 
 class User extends Authenticatable
 {
@@ -37,4 +39,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function boot(){
+        parent::boot();
+        static::created(function($model){
+            $admins = User::all()->filter(function($user){
+                return $user->hasRole('Admin');
+            });
+            Notification::send($admins, new UserRegistered($model));
+        });
+    }
 }
