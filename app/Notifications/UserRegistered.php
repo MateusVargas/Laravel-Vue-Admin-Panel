@@ -64,11 +64,11 @@ class UserRegistered extends Notification
         ];
     }
 
-    // public function toBroadcast($notifiable)
-    // {
-    //     return new BroadcastMessage([
-    //         'notification'=> $notifiable->notifications()->latest()->first()
-    //     ]);
-    // }
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'notification'=> $notifiable->notifications()->latest()->first()
+        ]);
+    }
 
 }

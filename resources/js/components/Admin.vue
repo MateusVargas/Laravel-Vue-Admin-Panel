@@ -180,6 +180,10 @@
         },
         created(){
           this.allNotifications = window.user.user.notifications
+
+          Echo.private("App.User." + this.user.id).notification(notification => {
+            this.allNotifications.push(notification.notification)
+          });
         }
     }
 </script>
