@@ -8,16 +8,20 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Notifications\UserRegistered;
 use Illuminate\Support\Facades\Notification;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\CausesActivity;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, LogsActivity, CausesActivity;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+    protected static $logFillable = true;
+
     protected $fillable = [
         'name', 'email', 'password',
     ];

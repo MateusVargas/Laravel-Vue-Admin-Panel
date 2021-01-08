@@ -55,6 +55,15 @@
               </v-list-item>
             </v-list-group>
 
+            <v-list-item to="/admin/activities">
+              <v-list-item-action>
+                <v-icon>settings</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Activities</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+
             <v-list-item to='/admin/settings'>
               <v-list-item-action>
                 <v-icon>settings</v-icon>
