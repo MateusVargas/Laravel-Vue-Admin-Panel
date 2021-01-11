@@ -130,10 +130,22 @@
               </v-btn>
             </template>
 
-            <v-list>
-              <v-list-item>
-                  <v-list-item-title>{{ user.name }}
-                  </v-list-item-title>
+            <v-list class="pa-0">
+              <v-list-item ripple="ripple" rel="noopener">
+                <v-list-item-content>
+                  <v-list-item-title>{{user.name}}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+
+            <v-list class="pa-0">
+              <v-list-item @click="logout" ripple="ripple" rel="noopener">
+                <v-list-item-action>
+                  <v-icon>account_circle</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>Logout</v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -173,8 +185,8 @@
         }),
         props: ["user"],
         methods:{
-            logout(){
-              console.log('Component mounted.')
+            logout() {
+              axios.post("/logout").then(response => window.location.reload());
             },
             markAsRead(){
               axios.get('/mark-all-read/'+this.user.id).then(resp=>console.log('done'))

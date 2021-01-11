@@ -2069,6 +2069,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2088,7 +2100,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ["user"],
   methods: {
     logout: function logout() {
-      console.log('Component mounted.');
+      axios.post("/logout").then(function (response) {
+        return window.location.reload();
+      });
     },
     markAsRead: function markAsRead() {
       axios.get('/mark-all-read/' + this.user.id).then(function (resp) {
@@ -45802,13 +45816,50 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-list",
+                    { staticClass: "pa-0" },
                     [
                       _c(
                         "v-list-item",
+                        { attrs: { ripple: "ripple", rel: "noopener" } },
                         [
-                          _c("v-list-item-title", [
-                            _vm._v(_vm._s(_vm.user.name) + "\n              ")
-                          ])
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v(_vm._s(_vm.user.name))
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    { staticClass: "pa-0" },
+                    [
+                      _c(
+                        "v-list-item",
+                        {
+                          attrs: { ripple: "ripple", rel: "noopener" },
+                          on: { click: _vm.logout }
+                        },
+                        [
+                          _c(
+                            "v-list-item-action",
+                            [_c("v-icon", [_vm._v("account_circle")])],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Logout")])],
+                            1
+                          )
                         ],
                         1
                       )

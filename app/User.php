@@ -53,4 +53,9 @@ class User extends Authenticatable
             Notification::send($admins, new UserRegistered($model));
         });
     }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class,'author_id');
+    }
 }
