@@ -8,6 +8,8 @@ use App\Http\Resources\BlogResource;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -53,14 +55,52 @@ class BlogController extends Controller
         $blog = auth()->user()->blogs()->create($input);
 
         if($request->filled('categories')) {
-
             $categoryIds= $this->createCategories($request->categories);
 
             $blog->categories()->sync($categoryIds);
-
         }
 
+        if($request->hasFile('featured_image')) {
+            $this->uploadImage($request, $blog);
+        }//rodar php artisan storage:link para funcionar o upload
+
         return new BlogResource($blog->load('categories'));
+    }
+
+
+    private function uploadImage(Request $request, Blog $blog) {
+
+        $resize = Image::make($request->file('featured_image'))->resize(800, 600)->encode('jpg');
+
+        $fileName = str_random(10) . '.jpg';
+
+        $filePath = 'featured_image/' . $fileName;
+
+        Storage::put($filePath, $resize);
+
+
+        // $filePath  = Storage::putFile('featured_image', $request->file('featured_image')); 
+
+        $blog->featured_image = $filePath;
+
+        $blog->save();
+    }
+
+    public function createCategories(array $categories)
+    {
+        $ids=[];
+
+        foreach($categories as $category){
+            if(is_array($category)){
+                $ids[]= $category['id'];
+            }else {
+                $newCategory = Category::create(['name'=> $category, 'creator_id'=> auth()->id()]);
+
+                $ids[] = $newCategory->id;
+            }
+        }
+
+        return $ids;
     }
 
     /**
@@ -71,7 +111,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return new BlogResource($blog);
+        return new BlogResource($blog->load('categories'));
     }
 
 
@@ -126,5 +166,15 @@ class BlogController extends Controller
         $blog->delete();
 
         return response(['message' => 'blog deleted!']);
+    }
+
+    public function updateFeaturedImage(Request $request, Blog $blog)
+    {
+        if ($request->hasFile('featured_image')) {
+
+            $this->uploadImage($request, $blog);
+        }
+
+        return new BlogResource($blog);
     }
 }

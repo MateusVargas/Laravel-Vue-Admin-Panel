@@ -2225,8 +2225,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Dashboard'
+  data: function data() {
+    return {
+      blogs: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/api/blogs').then(function (resp) {
+      _this.blogs = resp.data.data;
+      console.log(resp.data.data);
+    });
+  }
 });
 
 /***/ }),
@@ -46056,16 +46090,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "v-layout",
+    { attrs: { wrap: "" } },
+    _vm._l(_vm.blogs, function(item) {
+      return _c(
+        "v-flex",
+        { key: item.id },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", [_vm._v(_vm._s(item.title))]),
+              _vm._v(" "),
+              _c("v-card-subtitle", [_vm._v(_vm._s(item.status))]),
+              _vm._v(" "),
+              _c("v-card-text", [_vm._v(_vm._s(item.content))]),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    { attrs: { color: "deep-purple lighten-2", text: "" } },
+                    [_vm._v("\n\t\t        Update\n\t\t      ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    { attrs: { color: "deep-purple lighten-2", text: "" } },
+                    [_vm._v("\n\t\t        Delete\n\t\t      ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("br")
+        ],
+        1
+      )
+    }),
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h2", [_vm._v("Dashboard")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
