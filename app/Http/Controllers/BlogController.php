@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -46,7 +47,7 @@ class BlogController extends Controller
         ]);
 
         $input = $request->all();
-        $input['slug'] = str_slug($request->title);
+        $input['slug'] = Str::slug($request->title);
 
         if($request->filled('published_at')) {
             $input['published_at'] = Carbon::parse($request->published_at);
@@ -131,7 +132,7 @@ class BlogController extends Controller
         $input = $request->all();
 
         if ($request->filled('title')) {
-            $input['slug'] = str_slug($request->title);
+            $input['slug'] = Str::slug($request->title);
         }
 
         if ($request->filled('published_at')) {
@@ -148,7 +149,7 @@ class BlogController extends Controller
         }
        
 
-        return new BlogResource($blog);
+        return new BlogResource($blog->load('categories'));
     }
 
     /**
@@ -165,7 +166,7 @@ class BlogController extends Controller
 
         $blog->delete();
 
-        return response(['message' => 'blog deleted!']);
+        return response(['message' => 'Blog deleted!']);
     }
 
     public function updateFeaturedImage(Request $request, Blog $blog)
