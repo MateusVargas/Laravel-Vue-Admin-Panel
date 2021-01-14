@@ -15,7 +15,10 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('creator_id');
+
+            $table->unsignedBigInteger('creator_id');
+            $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();

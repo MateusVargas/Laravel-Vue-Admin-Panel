@@ -18,7 +18,10 @@ class CreateBlogsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->dateTime('published_at')->nullable();
-            $table->integer('author_id')->unsigned();
+
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->string('featured_image')->nullable();
             $table->string('slug',191)->nullable();
             $table->enum('status',['Published','Draft','InActive','Scheduled'])->default('Draft');

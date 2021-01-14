@@ -2312,46 +2312,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2360,15 +2320,15 @@ __webpack_require__.r(__webpack_exports__);
       editedIndex: -1,
       allCategories: [],
       editedItem: {
-        title: '',
-        content: '',
+        title: "",
+        content: "",
         categories: []
       }
     };
   },
   computed: {
     formTitle: function formTitle() {
-      return this.editedIndex === -1 ? 'New Blog' : 'Edit Blog';
+      return this.editedIndex === -1 ? "New Blog" : "Edit Blog";
     }
   },
   watch: {
@@ -2379,10 +2339,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios.get('/api/blogs').then(function (resp) {
+    axios.get("/api/blogs").then(function (resp) {
       _this.blogs = resp.data.data;
     });
-    axios.get('/api/categories').then(function (resp) {
+    axios.get("/api/categories").then(function (resp) {
       _this.allCategories = resp.data.data;
     });
   },
@@ -2397,8 +2357,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var blog = this.blogs.indexOf(item);
 
-      if (confirm('Apagar este item?')) {
-        axios["delete"]('/api/blogs/' + item.id).then(function (resp) {
+      if (confirm("Apagar este item?")) {
+        axios["delete"]("/api/blogs/" + item.id).then(function (resp) {
           return _this2.blogs.splice(blog, 1);
         });
       }
@@ -2417,14 +2377,14 @@ __webpack_require__.r(__webpack_exports__);
         Object.assign(this.blogs[this.editedIndex], this.editedItem);
         axios.put("/api/blogs/".concat(this.editedItem.id), this.editedItem).then(function (resp) {
           if (resp.data.data.id) {
-            alert('Blog updated');
+            alert("Blog updated");
           }
         });
       } else {
         this.blogs.push(this.editedItem);
-        axios.post('/api/blogs/', this.editedItem).then(function (resp) {
+        axios.post("/api/blogs/", this.editedItem).then(function (resp) {
           if (resp.data.data.id) {
-            alert('Blog created');
+            alert("Blog created");
           }
         });
       }
@@ -2657,6 +2617,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -3025,94 +2989,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       dialog: false,
       headers: [{
-        text: 'Username',
-        value: 'name'
+        text: "Username",
+        value: "name"
       }, {
-        text: 'Email',
-        value: 'email'
+        text: "Email",
+        value: "email"
       }, {
-        text: 'Role',
-        value: 'role.name'
+        text: "Role",
+        value: "role.name"
       }, {
-        text: 'Created',
-        value: 'created_at'
+        text: "Created",
+        value: "created_at"
       }, {
-        text: 'Actions',
-        value: 'actions',
+        text: "Actions",
+        value: "actions",
         sortable: false
       }],
       tableData: [],
@@ -3120,35 +3015,35 @@ __webpack_require__.r(__webpack_exports__);
       allRoles: [],
       allPermissions: [],
       editedItem: {
-        name: '',
-        email: '',
+        name: "",
+        email: "",
         role: [],
         permissions: [],
-        created_at: ''
+        created_at: ""
       },
       defaultItem: {
-        name: '',
-        email: '',
+        name: "",
+        email: "",
         role: [],
         permissions: [],
-        created_at: ''
+        created_at: ""
       },
       showPassword: false,
       showPasswordConfirm: false,
-      password: 'Password',
+      password: "Password",
       rules: {
         required: function required(value) {
-          return !!value || 'Required.';
+          return !!value || "Required.";
         },
         min: function min(value) {
-          return value ? value.length >= 4 || 'Min 4 characters' : '';
+          return value ? value.length >= 4 || "Min 4 characters" : "";
         }
       }
     };
   },
   computed: {
     formTitle: function formTitle() {
-      return this.editedIndex === -1 ? 'New User' : 'Edit User';
+      return this.editedIndex === -1 ? "New User" : "Edit User";
     }
   },
   watch: {
@@ -3163,13 +3058,13 @@ __webpack_require__.r(__webpack_exports__);
     initialize: function initialize() {
       var _this = this;
 
-      axios.get('/api/users').then(function (resp) {
+      axios.get("/api/users").then(function (resp) {
         return _this.tableData = resp.data.data;
       });
-      axios.get('/api/roles').then(function (resp) {
+      axios.get("/api/roles").then(function (resp) {
         return _this.allRoles = resp.data.data;
       });
-      axios.get('/api/permissions').then(function (resp) {
+      axios.get("/api/permissions").then(function (resp) {
         return _this.allPermissions = resp.data.data;
       });
     },
@@ -3183,8 +3078,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var user = this.tableData.indexOf(item);
 
-      if (confirm('Apagar este item?')) {
-        axios["delete"]('/api/users/' + item.id).then(function (resp) {
+      if (confirm("Apagar este item?")) {
+        axios["delete"]("/api/users/" + item.id).then(function (resp) {
           return _this2.tableData.splice(user, 1);
         });
       }
@@ -3206,7 +3101,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         this.tableData.push(this.editedItem);
-        axios.post('/api/users/', this.editedItem).then(function (resp) {
+        axios.post("/api/users/", this.editedItem).then(function (resp) {
           return alert(resp.data.message);
         });
       }
@@ -7716,7 +7611,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.new-blog[data-v-82704d4a]{\n\tposition: fixed;\n    bottom: 30px;\n    right: 5px;\n    min-width: 20px !important;\n}\n", ""]);
+exports.push([module.i, "\n.new-blog[data-v-82704d4a] {\n  position: fixed;\n  bottom: 30px;\n  right: 5px;\n  min-width: 20px !important;\n}\n", ""]);
 
 // exports
 
@@ -46269,13 +46164,13 @@ var render = function() {
               _c("div", { staticClass: "py-4" }, [
                 _c("div", [
                   _vm._v(
-                    "\n\t\t          " +
+                    "\n\t\t\t\t\t" +
                       _vm._s(activity.causer.name) +
                       " " +
                       _vm._s(activity.description) +
                       " " +
                       _vm._s(activity.properties.attributes.name) +
-                      "\n\t\t        "
+                      "\n\t\t\t\t\t"
                   )
                 ])
               ])
@@ -46339,7 +46234,7 @@ var render = function() {
                       ),
                       on
                     ),
-                    [_vm._v("\n             +\n            ")]
+                    [_vm._v("\n        +\n      ")]
                   )
                 ]
               }
@@ -46375,7 +46270,7 @@ var render = function() {
                         [
                           _c(
                             "v-col",
-                            { attrs: { cols: "12", sm: "6", md: "4" } },
+                            { attrs: { cols: "12", sm: "12", md: "12" } },
                             [
                               _c("v-text-field", {
                                 attrs: { label: "Title" },
@@ -46393,10 +46288,14 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "v-col",
-                            { attrs: { cols: "12", sm: "6", md: "4" } },
+                            { attrs: { cols: "12", sm: "12", md: "12" } },
                             [
-                              _c("v-text-field", {
-                                attrs: { label: "Content" },
+                              _c("v-textarea", {
+                                attrs: {
+                                  clearable: "",
+                                  "clear-icon": "close",
+                                  label: "Content"
+                                },
                                 model: {
                                   value: _vm.editedItem.content,
                                   callback: function($$v) {
@@ -46410,12 +46309,12 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("v-col", {
-                            attrs: { cols: "12", sm: "6", md: "4" }
+                            attrs: { cols: "12", sm: "12", md: "12" }
                           }),
                           _vm._v(" "),
                           _c(
                             "v-col",
-                            { attrs: { cols: "12", sm: "6", md: "4" } },
+                            { attrs: { cols: "12", sm: "12", md: "12" } },
                             [
                               _c("h3", [_vm._v("Categories")]),
                               _vm._v(" "),
@@ -46460,7 +46359,7 @@ var render = function() {
                       attrs: { color: "blue darken-1" },
                       on: { click: _vm.close }
                     },
-                    [_vm._v("\n                Cancel\n              ")]
+                    [_vm._v(" Cancel ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -46469,7 +46368,7 @@ var render = function() {
                       attrs: { color: "blue darken-1" },
                       on: { click: _vm.save }
                     },
-                    [_vm._v("\n                Save\n              ")]
+                    [_vm._v(" Save ")]
                   )
                 ],
                 1
@@ -46521,7 +46420,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n\t\t        Edit\n\t\t      ")]
+                      [_vm._v("\n          Edit\n        ")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -46534,7 +46433,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n\t\t        Delete\n\t\t      ")]
+                      [_vm._v("\n          Delete\n        ")]
                     )
                   ],
                   1
@@ -46827,6 +46726,33 @@ var render = function() {
             "v-dialog",
             {
               attrs: { "max-width": "700px" },
+              scopedSlots: _vm._u([
+                {
+                  key: "activator",
+                  fn: function(ref) {
+                    var on = ref.on
+                    var attrs = ref.attrs
+                    return [
+                      _c(
+                        "v-btn",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              staticClass: "mb-2",
+                              attrs: { color: "primary", dark: "" }
+                            },
+                            "v-btn",
+                            attrs,
+                            false
+                          ),
+                          on
+                        ),
+                        [_vm._v("New Role\n ")]
+                      )
+                    ]
+                  }
+                }
+              ]),
               model: {
                 value: _vm.dialog,
                 callback: function($$v) {
@@ -46836,15 +46762,6 @@ var render = function() {
               }
             },
             [
-              _c(
-                "v-btn",
-                {
-                  staticClass: "mb-2",
-                  attrs: { slot: "activator", color: "primary", dark: "" },
-                  slot: "activator"
-                },
-                [_vm._v("New Role\n ")]
-              ),
               _vm._v(" "),
               _c(
                 "v-card",
@@ -47402,7 +47319,7 @@ var render = function() {
                                 attrs: { color: "blue darken-1" },
                                 on: { click: _vm.close }
                               },
-                              [_vm._v("\n              Cancel\n            ")]
+                              [_vm._v(" Cancel ")]
                             ),
                             _vm._v(" "),
                             _c(
@@ -47411,7 +47328,7 @@ var render = function() {
                                 attrs: { color: "blue darken-1" },
                                 on: { click: _vm.save }
                               },
-                              [_vm._v("\n              Save\n            ")]
+                              [_vm._v(" Save ")]
                             )
                           ],
                           1
@@ -47445,7 +47362,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n      edit\n    ")]
+              [_vm._v(" edit ")]
             ),
             _vm._v(" "),
             _c(
@@ -47458,7 +47375,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n      delete\n    ")]
+              [_vm._v(" delete ")]
             )
           ]
         }
@@ -47470,7 +47387,7 @@ var render = function() {
             _c(
               "v-btn",
               { attrs: { color: "primary" }, on: { click: _vm.initialize } },
-              [_vm._v("\n      Reset\n    ")]
+              [_vm._v(" Reset ")]
             )
           ]
         },

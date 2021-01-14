@@ -50,7 +50,7 @@ class RoleController extends Controller
         ]);
 
         $role = $this->role->create([
-            'name'=>$request->name
+            'name'=>ucfirst(strtolower($request->name))
         ]);
 
         if($request->has('permissions')){
@@ -96,7 +96,7 @@ class RoleController extends Controller
         ]);
 
         $role->update([
-            'name'=>$request->name
+            'name'=>ucfirst(strtolower($request->name))
         ]);
 
         if($request->has('permissions')){
